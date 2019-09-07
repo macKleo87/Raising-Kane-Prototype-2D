@@ -9,11 +9,17 @@ public class Movement : MonoBehaviour
     public Transform pos;
     public int speed;
 
+    public HealthBar HB;
+    public GameObject HbInner;
+    public GameObject HbOuter;
+
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         pos = player.GetComponent<Transform>();
+        HB = new HealthBar(20);
+
     }
 
     // Update is called once per frame
@@ -28,7 +34,7 @@ public class Movement : MonoBehaviour
         //Basic Movement
         Vector2 movement = new Vector2();
 
-        if (Input.GetAxis("Horizontal") > 0)// && checkEdge(new Vector2(-7.5f, 3.5f)))
+        if (Input.GetAxis("Horizontal") > 0 && checkEdge2(new Vector2(7.5f, -3.5f)))
         {
             movement.x = speed;
         }
@@ -40,20 +46,29 @@ public class Movement : MonoBehaviour
         {
             movement.y = speed;
         }
-        if (Input.GetAxis("Vertical") < 0)// && checkEdge(new Vector2(-7.5f, 3.5f)))
+        if (Input.GetAxis("Vertical") < 0 && checkEdge2(new Vector2(7.5f, -3.5f)))
         {
             movement.y = -speed;
         }
 
+
         depthScaling();
         rb2d.AddForce(movement);
 
+        if(Input.GetKey(KeyCode.Q))
+        {
+            HB.DamageHealth(1);
+        }
+
+        UpdateHealth();
+
     }
 
+    //Scaling
     void depthScaling()
     {
         Vector3 scale = new Vector3(1, 1, 1);
-        float baseScale = 3;
+        float baseScale = 0.1f;
         if (pos.position.y > 0)
         {
             float scalefactor = 3 - pos.position.y;
@@ -65,9 +80,10 @@ public class Movement : MonoBehaviour
             scale = new Vector3(baseScale * scalefactor, baseScale * scalefactor, baseScale * scalefactor);
 
         }
-        scale.x = Mathf.Clamp(scale.x, 1, 15);
-        scale.y = Mathf.Clamp(scale.y, 1, 15);
-        scale.z = Mathf.Clamp(scale.z, 1, 15);
+        print(scale);
+        scale.x = Mathf.Clamp(scale.x, 0.2f, 1);
+        scale.y = Mathf.Clamp(scale.y, 0.2f, 1);
+        scale.z = Mathf.Clamp(scale.z, 0.2f, 1);
 
         pos.localScale = scale;
     }
@@ -87,7 +103,7 @@ public class Movement : MonoBehaviour
 
     bool checkEdge2(Vector2 edge)
     {
-        if (pos.position.x > edge.x && pos.position.y < edge.y)
+        if (pos.position.x < edge.x && pos.position.y > edge.y)
         {
             return true;
         }
@@ -96,6 +112,14 @@ public class Movement : MonoBehaviour
             return false;
 
         }
+    }
+
+    void UpdateHealth()
+    {
+        print(HB.GetHealth());
+        Vector3 curScale = HbInner.transform.localScale;
+        curScale.x = HB.GetHealthPercent();
+        HbInner.transform.localScale = curScale;
     }
 }
 
