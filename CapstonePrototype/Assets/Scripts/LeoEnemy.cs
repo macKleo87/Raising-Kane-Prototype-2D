@@ -7,29 +7,35 @@ public class LeoEnemy : MonoBehaviour
 
     public float health;
     public float speed;
-    private float dazedTime;
-    public float startDazedTime;
-    private Animator anim;
+
+    private float timeElapsed;
+    public float stunDelay;
+
+    //private Animator anim;
     //public gameobject bloodeffect; // just drag particle effect into this spot
+
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
-        anim.SetBool("isRunning", true);
+        //anim = GetComponent<Animator>();
+        //anim.SetBool("isRunning", true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (dazedTime <= 0)
+        // if enemy has movement this can be used to "stun" when they get hit
+        if (timeElapsed <= 0)
         {
             speed = 5;
         }
         else
         {
             speed = 0;
-            dazedTime -= Time.deltaTime;
+            timeElapsed -= Time.deltaTime;
         }
+
+
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -38,7 +44,7 @@ public class LeoEnemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        dazedTime = startDazedTime;
+        timeElapsed = stunDelay;
         //Instantiate(bloodeffect, transform.position, Quaternion.identity);
         //play a hurt sound
         health -= damage;

@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class LeoAttack : MonoBehaviour
 {
-    private float timeBtwAttack;
-    public float startTimeBtwAttack;
+    private float timeElapsed; //time since last attack
+    public float attackDelay; // time delay between attacks
 
-    public Transform attackPos;
-    public float attackRange;
-    public LayerMask whatIsEnemy;
+    public Transform attackCenter;
+    public float attackX;
+    public float attackY;
+    public LayerMask IsEnemy;
+
     public int damage;
+
+    //public Animator attackAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -21,24 +25,22 @@ public class LeoAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeBtwAttack <= 0)
+        if (timeElapsed <= 0)
         {
             if(Input.GetKey(KeyCode.Space))
             {
-                //camAnim.SetTrigger("shake");
                 //playerAnim.SetTrigger("attack");
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemy);
-                for (int i = 0; i < enemiesToDamage.Length; i++)
+                Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(attackCenter.position, new Vector2(attackX, attackY), 0, IsEnemy);
+                for (int i = 0; i < enemiesHit.Length; i++)
                 {
-                    enemiesToDamage[i].GetComponent<LeoEnemy>().TakeDamage(damage);
-                    //enemiesToDamage[i].GetComponent<>().health -= damage;
+                    enemiesHit[i].GetComponent<LeoEnemy>().TakeDamage(damage);
                 }
             }
-            timeBtwAttack = startTimeBtwAttack;
+            timeElapsed = attackDelay;
         }
         else
         {
-            timeBtwAttack -= Time.deltaTime;
+            timeElapsed -= Time.deltaTime;
         }
         
     }
@@ -46,6 +48,6 @@ public class LeoAttack : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPos.position, attackRange);
+        Gizmos.DrawWireCube(attackCenter.position, new Vector3(attackX, attackY, 1));
     }
 }
