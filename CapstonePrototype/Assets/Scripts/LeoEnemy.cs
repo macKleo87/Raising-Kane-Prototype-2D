@@ -11,7 +11,7 @@ public class LeoEnemy : MonoBehaviour
     private float timeElapsed;
     public float stunDelay;
 
-    //private Animator anim;
+    public Animator anim;
     //public gameobject bloodeffect; // just drag particle effect into this spot
 
     // Start is called before the first frame update
@@ -44,6 +44,7 @@ public class LeoEnemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        anim.SetTrigger("take_damage");
         timeElapsed = stunDelay;
         //Instantiate(bloodeffect, transform.position, Quaternion.identity);
         //play a hurt sound
