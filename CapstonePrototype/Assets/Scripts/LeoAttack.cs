@@ -25,9 +25,9 @@ public class LeoAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeElapsed <= 0)
+        if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            if(Input.GetKey(KeyCode.Space))
+            if (timeElapsed <= 0)
             {
                 //playerAnim.SetTrigger("attack");
                 Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(attackCenter.position, new Vector2(attackX, attackY), 0, IsEnemy);
