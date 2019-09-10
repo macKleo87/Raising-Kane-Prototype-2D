@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     public Transform pos;
     public int speed;
 
-    public HealthBar HB;
+    HealthBar HB;
     public GameObject HbInner;
     public GameObject HbOuter;
 
@@ -38,11 +38,11 @@ public class Movement : MonoBehaviour
         {
             movement.x = speed;
         }
-        if (Input.GetAxis("Horizontal") < 0 && checkEdge(new Vector2(-7.5f, 3.5f)))
+        if (Input.GetAxis("Horizontal") < 0 && checkEdge(new Vector2(-7.5f, -1.5f)))
         {
             movement.x = -speed;
         }
-        if (Input.GetAxis("Vertical") > 0 && checkEdge(new Vector2(-7.5f, 3.5f)))
+        if (Input.GetAxis("Vertical") > 0 && checkEdge(new Vector2(-7.5f, -1.5f)))
         {
             movement.y = speed;
         }
@@ -80,7 +80,6 @@ public class Movement : MonoBehaviour
             scale = new Vector3(baseScale * scalefactor, baseScale * scalefactor, baseScale * scalefactor);
 
         }
-        print(scale);
         scale.x = Mathf.Clamp(scale.x, 0.2f, 1);
         scale.y = Mathf.Clamp(scale.y, 0.2f, 1);
         scale.z = Mathf.Clamp(scale.z, 0.2f, 1);
@@ -90,7 +89,7 @@ public class Movement : MonoBehaviour
 
     bool checkEdge(Vector2 edge)
     {
-        if (pos.position.x > edge.x && pos.position.y < edge.y)
+        if (pos.position.y < edge.y)
         {
             return true;
         }
@@ -103,7 +102,7 @@ public class Movement : MonoBehaviour
 
     bool checkEdge2(Vector2 edge)
     {
-        if (pos.position.x < edge.x && pos.position.y > edge.y)
+        if (pos.position.y > edge.y)
         {
             return true;
         }
@@ -116,10 +115,11 @@ public class Movement : MonoBehaviour
 
     void UpdateHealth()
     {
-        print(HB.GetHealth());
         Vector3 curScale = HbInner.transform.localScale;
         curScale.x = HB.GetHealthPercent();
         HbInner.transform.localScale = curScale;
     }
 }
+
+
 
