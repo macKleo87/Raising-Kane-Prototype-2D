@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    private float timeElapsed; //time since last attack
+    public float attackDelay; // time delay between attacks
+
+    public Transform attackCenter;
+    public float attackX;
+    public float attackY;
+    public LayerMask IsEnemy;
+
+    public int damage;
+
+    //public Animator attackAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +25,29 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timeElapsed <= 0)
+        {
+            if(Input.GetKey(KeyCode.Space))
+            {
+                //playerAnim.SetTrigger("attack");
+                Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(attackCenter.position, new Vector2(attackX, attackY), 0, IsEnemy);
+                for (int i = 0; i < enemiesHit.Length; i++)
+                {
+                    enemiesHit[i].GetComponent<Enemy>().TakeDamage(damage);
+                }
+            }
+            timeElapsed = attackDelay;
+        }
+        else
+        {
+            timeElapsed -= Time.deltaTime;
+        }
         
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(attackCenter.position, new Vector3(attackX, attackY, 1));
     }
 }
