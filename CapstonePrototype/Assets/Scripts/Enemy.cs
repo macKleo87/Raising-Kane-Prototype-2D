@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public GameObject HbInner;
     public GameObject HbOuter;
 
-    //public Animator anim;
+    public Animator anim; // added this back in and attached the animator to this
     //public gameobject bloodeffect; // just drag particle effect into this spot
 
     // Start is called before the first frame update
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        //anim.SetTrigger("take_damage");
+        anim.SetTrigger("take_damage"); // added this as well
         timeElapsed = stunDelay;
         //Instantiate(bloodeffect, transform.position, Quaternion.identity);
         //play a hurt sound
