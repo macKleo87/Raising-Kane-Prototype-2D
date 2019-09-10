@@ -522,7 +522,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963211893}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.13, z: -15.9790325}
+  m_LocalPosition: {x: -0.04, y: -0.37, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1725232473}
@@ -584,7 +584,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2c19616d4f55e4523a2d689dfa87e0ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ceedde5d6614f345970fad0b5caa547, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -871,8 +871,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDelay: 0.3
   attackCenter: {fileID: 963211894}
-  attackX: 1.9
-  attackY: 1.39
+  attackX: 2.21
+  attackY: 1.19
   IsEnemy:
     serializedVersion: 2
     m_Bits: 256
