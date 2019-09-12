@@ -665,7 +665,7 @@ MonoBehaviour:
   player: {fileID: 1725232470}
   rb2d: {fileID: 0}
   pos: {fileID: 0}
-  speed: 10
+  speed: 15
   HbInner: {fileID: 1601701257}
   HbOuter: {fileID: 1168791373}
 --- !u!114 &1725232475
