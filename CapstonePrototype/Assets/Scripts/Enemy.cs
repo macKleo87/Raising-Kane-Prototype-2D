@@ -6,10 +6,10 @@ public class Enemy : MonoBehaviour
 {
 
     public float health;
-    public float speed;
 
-    private float timeElapsed;
-    public float stunDelay;
+    //public float speed;
+    //private float timeElapsed;
+    //public float stunDelay;
 
     HealthBar HB;
     public GameObject HbInner;
@@ -32,15 +32,15 @@ public class Enemy : MonoBehaviour
         UpdateHealth();
 
         // if enemy has movement this can be used to "stun" when they get hit
-        if (timeElapsed <= 0)
-        {
-            speed = 5;
-        }
-        else
-        {
-            speed = 0;
-            timeElapsed -= Time.deltaTime;
-        }
+        //if (timeElapsed <= 0)
+        //{
+        //    speed = 5;
+        //}
+        //else
+        //{
+        //    speed = 0;
+        //    timeElapsed -= Time.deltaTime;
+        //}
 
 
         if (health <= 0)
@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         anim.SetTrigger("take_damage"); // added this as well
-        timeElapsed = stunDelay;
+        //timeElapsed = stunDelay;
         //Instantiate(bloodeffect, transform.position, Quaternion.identity);
         //play a hurt sound
         HB.DamageHealth(damage);
