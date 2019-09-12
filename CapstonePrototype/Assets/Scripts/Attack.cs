@@ -25,10 +25,11 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (timeElapsed <= 0) //swapped the two if statements here
             {
+                print("Attack");
                 //playerAnim.SetTrigger("attack");
                 Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(attackCenter.position, new Vector2(attackX, attackY), 0, IsEnemy);
                 for (int i = 0; i < enemiesHit.Length; i++)

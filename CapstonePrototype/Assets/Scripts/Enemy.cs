@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     public float health;
+    public Rigidbody2D rb2d;
 
     //public float speed;
     //private float timeElapsed;
@@ -14,6 +15,9 @@ public class Enemy : MonoBehaviour
     HealthBar HB;
     public GameObject HbInner;
     public GameObject HbOuter;
+
+
+    
 
     public Animator anim; // added this back in and attached the animator to this
     //public gameobject bloodeffect; // just drag particle effect into this spot
@@ -24,6 +28,8 @@ public class Enemy : MonoBehaviour
         HB = new HealthBar(3);
         //anim = GetComponent<Animator>();
         //anim.SetBool("isRunning", true);
+
+        rb2d.freezeRotation = true;
     }
 
     // Update is called once per frame

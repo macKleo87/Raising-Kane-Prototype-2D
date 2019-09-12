@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        rb2d.freezeRotation = true;
         pos = player.GetComponent<Transform>();
         HB = new HealthBar(20);
 
