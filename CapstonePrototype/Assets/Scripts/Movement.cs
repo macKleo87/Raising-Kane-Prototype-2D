@@ -30,7 +30,8 @@ public class Movement : MonoBehaviour
         rb2d.GetVector(curMov);
         curMov.x = -curMov.x;
         curMov.y = -curMov.y;
-        rb2d.AddForce(curMov);
+        rb2d.AddForce(curMov); 
+        
 
         //Basic Movement
         Vector2 movement = new Vector2();

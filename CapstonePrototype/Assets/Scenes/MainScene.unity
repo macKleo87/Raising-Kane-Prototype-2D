@@ -803,7 +803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1725232470}
-  rb2d: {fileID: 0}
+  rb2d: {fileID: 1725232471}
   pos: {fileID: 0}
   speed: 25
   HB: {fileID: 0}
