@@ -6,18 +6,23 @@ public class Enemy : MonoBehaviour
 {
 
     public float health;
-    public Rigidbody2D rb2d;
+    //public Rigidbody2D rb2d;
 
-    //public float speed;
-    //private float timeElapsed;
+    public float speed;
+    public float stop_dist;
+
+    private Transform player;
+
     //public float stunDelay;
 
     HealthBar HB;
     public GameObject HbInner;
     public GameObject HbOuter;
 
+    public EnemySpawner Spawner;
 
-    
+    private float timeElapsed; //time since last attack
+    public float attackDelay; // time delay between attacks
 
     public Animator anim; // added this back in and attached the animator to this
     //public gameobject bloodeffect; // just drag particle effect into this spot
@@ -29,7 +34,10 @@ public class Enemy : MonoBehaviour
         //anim = GetComponent<Animator>();
         //anim.SetBool("isRunning", true);
 
-        rb2d.freezeRotation = true;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+
+        timeElapsed = attackDelay;
     }
 
     // Update is called once per frame
@@ -37,17 +45,10 @@ public class Enemy : MonoBehaviour
     {
         UpdateHealth();
 
-        // if enemy has movement this can be used to "stun" when they get hit
-        //if (timeElapsed <= 0)
-        //{
-        //    speed = 5;
-        //}
-        //else
-        //{
-        //    speed = 0;
-        //    timeElapsed -= Time.deltaTime;
-        //}
-
+        if (Vector2.Distance(transform.position, player.position) > stop_dist)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        } 
 
         if (health <= 0)
         {
@@ -71,5 +72,25 @@ public class Enemy : MonoBehaviour
         HB.DamageHealth(damage);
         health -= damage;
         print("health: " + health);
+    }
+
+    private void OnCollisionStay2D(Collision2D coll)
+    {
+        if (coll.collider.name == "Player" && timeElapsed <= 0)
+        {
+            coll.collider.GetComponent<Movement>().HB.DamageHealth(5);
+            timeElapsed = attackDelay;
+        } else
+        {
+            timeElapsed -= Time.deltaTime;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.collider.name == "Player" && timeElapsed <= 0)
+        {
+            timeElapsed = attackDelay;
+        }
     }
 }

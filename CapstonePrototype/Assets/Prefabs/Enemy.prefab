@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7520339166139771962}
   - component: {fileID: 7520339166139771963}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthBarColor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7520339166520461375}
   - component: {fileID: 7520339166520461368}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthBarOuter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7520339166673293297}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthBarInner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7520339166997834936}
   - component: {fileID: 7520339166997834937}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,11 +246,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7520339167372007346}
   - component: {fileID: 7520339167372007345}
-  - component: {fileID: 7520339167372007344}
   - component: {fileID: 7520339167372007356}
   - component: {fileID: 7520339167372007347}
   - component: {fileID: 7520339167372007357}
-  - component: {fileID: 1771161758683611328}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Player
@@ -322,27 +320,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &7520339167372007344
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7520339167372007351}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 5
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &7520339167372007356
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -367,7 +344,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.13, y: 2.02}
+  m_Size: {x: 2.8, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &7520339167372007347
 MonoBehaviour:
@@ -382,9 +359,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
-  rb2d: {fileID: 7520339167372007344}
+  speed: 2
+  stop_dist: 1.5
   HbInner: {fileID: 7520339166673293296}
   HbOuter: {fileID: 7520339166520461374}
+  Spawner: {fileID: 0}
+  attackDelay: 3
   anim: {fileID: 7520339167372007357}
 --- !u!95 &7520339167372007357
 Animator:
@@ -405,17 +385,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1771161758683611328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7520339167372007351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b507a7a3411684409525454a37d199e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  stop_dist: 1

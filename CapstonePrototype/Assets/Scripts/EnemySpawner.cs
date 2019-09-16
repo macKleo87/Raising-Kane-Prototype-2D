@@ -26,9 +26,6 @@ public class EnemySpawner : MonoBehaviour
         }
 
         getCurrentEnemies();
-
-        print(Enemies.Count);
-
     }
 
     void getCurrentEnemies()

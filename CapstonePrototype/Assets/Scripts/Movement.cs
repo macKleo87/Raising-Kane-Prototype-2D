@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     public Transform pos;
     public int speed;
 
-    HealthBar HB;
+    public HealthBar HB;
     public GameObject HbInner;
     public GameObject HbOuter;
 
@@ -35,25 +35,23 @@ public class Movement : MonoBehaviour
         //Basic Movement
         Vector2 movement = new Vector2();
 
-        if (Input.GetAxis("Horizontal") > 0 && checkEdge2(new Vector2(7.5f, -3.5f)))
+        if (Input.GetAxis("Horizontal") > 0) //&& checkEdge2(new Vector2(7.5f, -3.5f)))
         {
             movement.x = speed;
         }
-        if (Input.GetAxis("Horizontal") < 0 && checkEdge(new Vector2(-7.5f, -1.5f)))
+        if (Input.GetAxis("Horizontal") < 0)// && checkEdge(new Vector2(-7.5f, -1.5f)))
         {
             movement.x = -speed;
         }
-        if (Input.GetAxis("Vertical") > 0 && checkEdge(new Vector2(-7.5f, -1.5f)))
+        if (Input.GetAxis("Vertical") > 0)// && checkEdge(new Vector2(-7.5f, -1.5f)))
         {
             movement.y = speed;
         }
-        if (Input.GetAxis("Vertical") < 0 && checkEdge2(new Vector2(7.5f, -3.5f)))
+        if (Input.GetAxis("Vertical") < 0)// && checkEdge2(new Vector2(7.5f, -3.5f)))
         {
             movement.y = -speed;
         }
 
-
-        depthScaling();
         rb2d.AddForce(movement);
 
         if(Input.GetKey(KeyCode.Q))
@@ -65,28 +63,6 @@ public class Movement : MonoBehaviour
 
     }
 
-    //Scaling
-    void depthScaling()
-    {
-        Vector3 scale = new Vector3(1, 1, 1);
-        float baseScale = 0.1f;
-        if (pos.position.y > 0)
-        {
-            float scalefactor = 3 - pos.position.y;
-            scale = new Vector3(baseScale * scalefactor, baseScale * scalefactor, baseScale * scalefactor);
-        }
-        else if (pos.position.y < 0)
-        {
-            float scalefactor = 3 - pos.position.y;
-            scale = new Vector3(baseScale * scalefactor, baseScale * scalefactor, baseScale * scalefactor);
-
-        }
-        scale.x = Mathf.Clamp(scale.x, 0.2f, 1);
-        scale.y = Mathf.Clamp(scale.y, 0.2f, 1);
-        scale.z = Mathf.Clamp(scale.z, 0.2f, 1);
-
-        pos.localScale = scale;
-    }
 
     bool checkEdge(Vector2 edge)
     {
@@ -119,6 +95,11 @@ public class Movement : MonoBehaviour
         Vector3 curScale = HbInner.transform.localScale;
         curScale.x = HB.GetHealthPercent();
         HbInner.transform.localScale = curScale;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
     }
 }
 

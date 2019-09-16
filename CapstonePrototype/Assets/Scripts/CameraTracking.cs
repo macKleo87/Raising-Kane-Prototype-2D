@@ -32,6 +32,7 @@ public class CameraTracking : MonoBehaviour
     void trackCenter()
     {
         //This gets the current position
+        float CurX = transform.position.x;
         float NewX = transform.position.x;
 
         //This only moves the camera is the distance is more then our limits 
@@ -39,7 +40,10 @@ public class CameraTracking : MonoBehaviour
         {
             NewX = Mathf.Lerp(transform.position.x, player.transform.position.x, smoothing * Time.deltaTime);
         }
-
+        if (NewX < CurX)
+        {
+            NewX = CurX;
+        }
 
         //This sets the positon of the camera with the new position
         transform.position = new Vector3(NewX, transform.position.y, transform.position.z);
