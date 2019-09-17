@@ -34,7 +34,10 @@ public class Attack : MonoBehaviour
                 Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(attackCenter.position, new Vector2(attackX, attackY), 0, IsEnemy);
                 for (int i = 0; i < enemiesHit.Length; i++)
                 {
-                    enemiesHit[i].GetComponent<Enemy>().TakeDamage(damage);
+                    if (enemiesHit[i].GetComponent<Enemy>() != null)
+                    {
+                        enemiesHit[i].GetComponent<Enemy>().TakeDamage(damage);
+                    }
                 }
             }
             timeElapsed = attackDelay;
