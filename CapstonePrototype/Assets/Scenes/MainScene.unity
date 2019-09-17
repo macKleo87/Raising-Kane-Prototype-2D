@@ -320,7 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 963211894}
   m_Layer: 0
-  m_Name: AttackPos
+  m_Name: AttackPosR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,7 +334,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963211893}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.04, y: -0.37, z: 1}
+  m_LocalPosition: {x: 0.4, y: -0.37, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1725232473}
@@ -823,7 +823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDelay: 0.3
-  attackCenter: {fileID: 963211894}
+  attackCenterR: {fileID: 963211894}
   attackX: 2.35
   attackY: 1.19
   IsEnemy:
