@@ -48,7 +48,11 @@ public class Enemy : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) > stop_dist)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        } 
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, 0 * Time.deltaTime);
+        }
 
         if (health <= 0)
         {
