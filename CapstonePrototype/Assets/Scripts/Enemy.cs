@@ -20,9 +20,12 @@ public class Enemy : MonoBehaviour
     public GameObject HbOuter;
 
     public EnemySpawner Spawner;
+    public GameObject AttackObj;
 
     private float timeElapsed; //time since last attack
     public float attackDelay; // time delay between attacks
+    bool foundPlayer;
+    public bool attacking = false;
 
     public Animator anim; // added this back in and attached the animator to this
     //public gameobject bloodeffect; // just drag particle effect into this spot
@@ -35,7 +38,7 @@ public class Enemy : MonoBehaviour
         //anim.SetBool("isRunning", true);
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-
+        AttackObj.SetActive(false);
 
         timeElapsed = attackDelay;
     }
@@ -45,13 +48,27 @@ public class Enemy : MonoBehaviour
     {
         UpdateHealth();
 
-        if (Vector2.Distance(transform.position, player.position) > stop_dist)
+ 
+
+        if (foundPlayer == false && attacking == false)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        }
-        else
+        } 
+
+        if ((foundPlayer == true) && (attacking == false))
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, 0 * Time.deltaTime);
+
+            timeElapsed = attackDelay;
+            attacking = true;
+            StartCoroutine(Attack());
+        }
+
+        if (Vector2.Distance(transform.position, player.position) <= stop_dist && attacking == false)
+        {
+            foundPlayer = true;
+        } else if (Vector2.Distance(transform.position, player.position) > stop_dist && attacking == false)
+        {
+            foundPlayer = false;
         }
 
         if (health <= 0)
@@ -78,23 +95,15 @@ public class Enemy : MonoBehaviour
         print("health: " + health);
     }
 
-    private void OnCollisionStay2D(Collision2D coll)
-    {
-        if (coll.collider.name == "Player" && timeElapsed <= 0)
-        {
-            coll.collider.GetComponent<Movement>().HB.DamageHealth(5);
-            timeElapsed = attackDelay;
-        } else
-        {
-            timeElapsed -= Time.deltaTime;
-        }
-    }
 
-    private void OnCollisionEnter2D(Collision2D coll)
+
+    IEnumerator Attack()
     {
-        if (coll.collider.name == "Player" && timeElapsed <= 0)
-        {
-            timeElapsed = attackDelay;
-        }
+        yield return new WaitForSeconds(1);
+        AttackObj.SetActive(true);
+        print("EnemyAttack");
+        yield return new WaitForSeconds(0.5f);
+        AttackObj.SetActive(false);
+        attacking = false;
     }
 }
