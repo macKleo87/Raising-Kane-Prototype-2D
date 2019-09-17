@@ -361,7 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   speed: 2
-  stop_dist: 1.5
+  stop_dist: 2
   HbInner: {fileID: 7520339166673293296}
   HbOuter: {fileID: 7520339166520461374}
   Spawner: {fileID: 0}

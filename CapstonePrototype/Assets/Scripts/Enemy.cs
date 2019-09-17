@@ -53,10 +53,7 @@ public class Enemy : MonoBehaviour
         if (foundPlayer == false && attacking == false)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        } else
-        {
-            foundPlayer = true;
-        }
+        } 
 
         if ((foundPlayer == true) && (attacking == false))
         {
