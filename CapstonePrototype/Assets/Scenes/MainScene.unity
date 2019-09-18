@@ -930,7 +930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1725232473}
   - component: {fileID: 1725232472}
-  - component: {fileID: 1725232474}
+  - component: {fileID: 1725232478}
   - component: {fileID: 1725232475}
   - component: {fileID: 1725232471}
   - component: {fileID: 1725232476}
@@ -1028,7 +1028,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1725232474
+--- !u!114 &1725232475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1037,29 +1037,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1725232470}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7afa248a26b174f30bb4349c97220472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1725232470}
-  rb2d: {fileID: 1725232471}
-  pos: {fileID: 0}
-  speed: 25
-  HB: {fileID: 0}
-  HbInner: {fileID: 1601701257}
-  HbOuter: {fileID: 1168791373}
---- !u!114 &1725232475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1725232470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd8db8a3e78a44557bf1a673cc8197be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDelay: 0.3
+  attackDelay: 0.25
   attackCenterR: {fileID: 963211894}
   attackX: 2.35
   attackY: 1.19
@@ -1113,6 +1094,33 @@ MonoBehaviour:
   speed: 5
   rb: {fileID: 1725232471}
   movement: {x: 0, y: 0}
+--- !u!114 &1725232478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725232470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b47a85c91aec10449f81f9b69a44e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDelay: 0.3
+  attackCenterR: {fileID: 963211894}
+  attackX: 2.35
+  attackY: 1.19
+  IsEnemy:
+    serializedVersion: 2
+    m_Bits: 256
+  attackSprite1: {fileID: 21300000, guid: a7e568b9ef203b8468e7119eac6a2e92, type: 3}
+  attackSprite1_left: {fileID: 21300000, guid: f37fae157ca74744ba46748ff216b08a, type: 3}
+  attackSprite2: {fileID: 21300000, guid: 7fc23cc4d9349e34190d76c532f965cc, type: 3}
+  attackSprite2_left: {fileID: 21300000, guid: 3bd2fd885810e6b43a39c1da3bbd6e5f, type: 3}
+  idleSprite: {fileID: 21300000, guid: a5a764bf8d7e5e9448fb2a203315ab6b, type: 3}
+  idleSpriteL: {fileID: 21300000, guid: f6f15a0c15aa24741b2a93f448d46569, type: 3}
+  playerSpriteRenderer: {fileID: 0}
+  damage: 1
 --- !u!1 &1896877755
 GameObject:
   m_ObjectHideFlags: 0
