@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     bool foundPlayer;
     public bool attacking = false;
 
+
     public Animator anim; // added this back in and attached the animator to this
     //public gameobject bloodeffect; // just drag particle effect into this spot
 
@@ -39,6 +40,7 @@ public class Enemy : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         AttackObj.SetActive(false);
+
 
         timeElapsed = attackDelay;
     }
@@ -91,6 +93,7 @@ public class Enemy : MonoBehaviour
         //Instantiate(bloodeffect, transform.position, Quaternion.identity);
         //play a hurt sound
         HB.DamageHealth(damage);
+        musicManager.Playsound("enemyDamaged");
         health -= damage;
         print("health: " + health);
     }
@@ -101,6 +104,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         AttackObj.SetActive(true);
+        musicManager.Playsound("enemyAttack");
         print("EnemyAttack");
         yield return new WaitForSeconds(0.5f);
         AttackObj.SetActive(false);

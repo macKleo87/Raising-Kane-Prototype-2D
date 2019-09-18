@@ -67,6 +67,8 @@ public class Attack : MonoBehaviour
                 StartCoroutine(AttackAnimCo());
                 //playerSpriteRenderer.sprite = attackSprite;
                 print("Attack");
+                //play sound effect
+                musicManager.Playsound("Melee1");
                 //playerAnim.SetTrigger("attack");
                 Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(attackCenterR.position, new Vector2(attackX, attackY), 0, IsEnemy);
                 for (int i = 0; i < enemiesHit.Length; i++)

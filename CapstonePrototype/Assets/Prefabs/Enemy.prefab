@@ -367,6 +367,11 @@ MonoBehaviour:
   Spawner: {fileID: 0}
   AttackObj: {fileID: 8768220377813475201}
   attackDelay: 3
+  attacking: 0
+  enemyD: {fileID: 8300000, guid: 5dec91a7eca5a734c8e88439dd8a4f13, type: 3}
+  enemyDamaged: {fileID: 0}
+  EnemyA: {fileID: 8300000, guid: f7bab54a524753a41974c3821f7fe060, type: 3}
+  enemyAttack: {fileID: 0}
   anim: {fileID: 7520339167372007357}
 --- !u!95 &7520339167372007357
 Animator:
