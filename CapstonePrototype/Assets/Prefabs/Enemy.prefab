@@ -364,14 +364,12 @@ MonoBehaviour:
   stop_dist: 2
   HbInner: {fileID: 7520339166673293296}
   HbOuter: {fileID: 7520339166520461374}
+  attackX: 0
+  attackY: 0
   Spawner: {fileID: 0}
   AttackObj: {fileID: 8768220377813475201}
   attackDelay: 3
   attacking: 0
-  enemyD: {fileID: 8300000, guid: 5dec91a7eca5a734c8e88439dd8a4f13, type: 3}
-  enemyDamaged: {fileID: 0}
-  EnemyA: {fileID: 8300000, guid: f7bab54a524753a41974c3821f7fe060, type: 3}
-  enemyAttack: {fileID: 0}
   anim: {fileID: 7520339167372007357}
 --- !u!95 &7520339167372007357
 Animator:
@@ -403,6 +401,7 @@ GameObject:
   - component: {fileID: 8206406670350178627}
   - component: {fileID: 6547842044298690814}
   - component: {fileID: 2814461099740764909}
+  - component: {fileID: 6491614838580256290}
   m_Layer: 8
   m_Name: Attack
   m_TagString: Untagged
@@ -483,9 +482,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.97
+--- !u!114 &6491614838580256290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8768220377813475201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1281fe6f10c479c4ca6ca32cd2d405f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  isPlayer:
+    serializedVersion: 2
+    m_Bits: 0

@@ -19,6 +19,10 @@ public class Enemy : MonoBehaviour
     public GameObject HbInner;
     public GameObject HbOuter;
 
+    public float attackX;
+    public float attackY;
+
+
     public EnemySpawner Spawner;
     public GameObject AttackObj;
 
