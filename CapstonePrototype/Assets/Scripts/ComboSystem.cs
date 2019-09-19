@@ -38,6 +38,8 @@ public class ComboSystem : MonoBehaviour
     private float default_Combo_Timer = .4f;
     private float current_Combo_Timer;
     private ComboState current_Combo_State;
+    private bool keyDown;
+    private bool keyWasDown;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +52,9 @@ public class ComboSystem : MonoBehaviour
         gotSpeed = 0;
         facingRight = true;
         isAttacking = false;
+
+        keyDown = false;
+        keyWasDown = false;
 
     }
 
@@ -80,6 +85,13 @@ public class ComboSystem : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
         //COMBO STUFF
+
+        if (Input.GetAxis("Attack") == 0.0f)
+        {
+            keyDown = false;
+        }
+
+
         ComboAttacks();
         ResetComboState();
 
@@ -117,9 +129,10 @@ public class ComboSystem : MonoBehaviour
 
     void ComboAttacks()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetAxis("Attack") > 0 && keyDown == false)
         {
-            if (timeElapsed <= 0) //swapped the two if statements here
+            keyDown = true;
+            if (timeElapsed <= 0 ) //swapped the two if statements here
             {
                 current_Combo_State++;
                 activateTimerToReset = true;
@@ -236,6 +249,20 @@ public class ComboSystem : MonoBehaviour
                 activateTimerToReset = false;
                 current_Combo_Timer = default_Combo_Timer;
             }
+        }
+    }
+
+     void OnFirstPress(string Axis)
+    {
+
+        if (Input.GetAxis(Axis) > 0 && keyWasDown == false)
+        {
+            keyDown = true;
+            keyWasDown = true;
+        }
+        if (Input.GetAxis(Axis) > 0)
+        {
+
         }
     }
 }
