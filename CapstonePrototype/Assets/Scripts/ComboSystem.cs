@@ -135,6 +135,10 @@ public class ComboSystem : MonoBehaviour
                         {
                             enemiesHit[i].GetComponent<Enemy>().TakeDamage(damage);
                         }
+                        if (enemiesHit[i].GetComponent<Boss>() != null)
+                        {
+                            enemiesHit[i].GetComponent<Boss>().TakeDamage(damage);
+                        }
                     }
                 }
 
@@ -147,6 +151,10 @@ public class ComboSystem : MonoBehaviour
                         if (enemiesHit[i].GetComponent<Enemy>() != null)
                         {
                             enemiesHit[i].GetComponent<Enemy>().TakeDamage(damage);
+                        }
+                        if (enemiesHit[i].GetComponent<Boss>() != null)
+                        {
+                            enemiesHit[i].GetComponent<Boss>().TakeDamage(damage);
                         }
                     }
                 }
