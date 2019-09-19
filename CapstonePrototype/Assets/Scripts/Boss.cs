@@ -35,7 +35,7 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HB = new HealthBar(6);
+        HB = new HealthBar(bossHealth);
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         asleep = true; //this should be set to false
